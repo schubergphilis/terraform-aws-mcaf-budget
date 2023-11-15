@@ -2,7 +2,7 @@ resource "aws_budgets_budget" "default" {
   name              = "budget-${var.name}-${lower(var.time_unit)}"
   budget_type       = "COST"
   limit_amount      = var.limit_amount
-  limit_unit        = "USD"
+  limit_unit        = var.limit_unit
   time_period_start = "${substr(timestamp(), 0, 10)}_00:00"
   time_unit         = var.time_unit
 
@@ -16,16 +16,16 @@ resource "aws_budgets_budget" "default" {
   }
 
   cost_types {
-    include_credit             = false
-    include_discount           = false
-    include_other_subscription = false
-    include_recurring          = false
-    include_refund             = false
-    include_subscription       = false
-    include_support            = false
-    include_tax                = false
-    include_upfront            = false
-    use_amortized              = true
+    include_credit             = var.cost_types.include_credit
+    include_discount           = var.cost_types.include_discount
+    include_other_subscription = var.cost_types.include_other_subscription
+    include_recurring          = var.cost_types.include_recurring
+    include_refund             = var.cost_types.include_refund
+    include_subscription       = var.cost_types.include_subscription
+    include_support            = var.cost_types.include_support
+    include_tax                = var.cost_types.include_tax
+    include_upfront            = var.cost_types.include_upfront
+    use_amortized              = var.cost_types.use_amortized
   }
 
   notification {
