@@ -20,6 +20,43 @@ Now the Budgets/Cost Explorer values be the same. AWS expects Cloud Explorer par
 > We do not pin modules to versions in our examples. We highly recommend that in your code you pin the version to the exact version you are using so that your infrastructure remains stable.
 
 <!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.52.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.52.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_budgets_budget.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/budgets_budget) | resource |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_limit_amount"></a> [limit\_amount](#input\_limit\_amount) | The amount of cost or usage being measured for a budget | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | Budget name | `string` | n/a | yes |
+| <a name="input_subscriber_email_addresses"></a> [subscriber\_email\_addresses](#input\_subscriber\_email\_addresses) | E-mail addresses to notify when the threshold is met | `list(string)` | n/a | yes |
+| <a name="input_cost_filter"></a> [cost\_filter](#input\_cost\_filter) | Cost filters to apply to the budget | `map(any)` | `{}` | no |
+| <a name="input_notification_threshold"></a> [notification\_threshold](#input\_notification\_threshold) | % Threshold when the notification should be sent | `string` | `100` | no |
+| <a name="input_time_unit"></a> [time\_unit](#input\_time\_unit) | The length of time until a budget resets the actual and forecasted spend. Valid values: MONTHLY, QUARTERLY, ANNUALLY | `string` | `"MONTHLY"` | no |
+
+## Outputs
+
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## Licensing
