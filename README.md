@@ -3,7 +3,7 @@
 Terraform module to create and manage an AWS Budget.
 
 > [!IMPORTANT]
-> There is a known limitation within AWS Budgets. AWS Budgets is not in complete parity with Cost Explorer. Currently, Budgets does not support charge types related to Savings Plans or reservation applied usage. This means that the spend you see in AWS Budgets can be different then you see in AWS Cost Explorer or your AWS bill.
+> Please note a limitation in AWS Budgets in comparison to Cost Explorer: AWS Budgets does not currently fully align with Cost Explorer, lacking support for charge types related to Savings Plans or reservation-applied usage. Consequently, the expenditure displayed in AWS Budgets may differ from what you observe in AWS Cost Explorer or your AWS bill.
 
 As a temporary work-around, you needs to select the following charge types in Cost Explorer after clicking on "View in Cost Explorer" in your AWS Budget:
 
