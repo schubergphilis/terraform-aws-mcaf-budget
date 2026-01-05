@@ -19,8 +19,13 @@ module "budgets" {
   for_each = local.aws_budgets
   source   = "../.."
 
-  name                       = each.key
-  cost_filter                = each.value.cost_filter
-  limit_amount               = each.value.limit_amount
-  subscriber_email_addresses = ["example@example.com"]
+  name         = each.key
+  cost_filter  = each.value.cost_filter
+  limit_amount = each.value.limit_amount
+
+  notifications = [
+    {
+      subscriber_email_addresses = ["example@example.com"]
+    }
+  ]
 }

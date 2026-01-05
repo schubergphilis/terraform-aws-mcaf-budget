@@ -2,6 +2,46 @@
 
 Terraform module to create and manage an AWS Budget.
 
+## Budget Types
+
+This module supports three mutually exclusive budget configuration options. You must specify exactly one:
+
+### 1️⃣ Enforcement Budget – `var.limit_amount`
+
+"Do not exceed this"
+
+Use this for simple, fixed-amount budgets that set a hard spending threshold. This is the most common and straightforward budget type.
+
+- Single fixed amount for the entire time period
+- Simple to configure and understand
+- Best for cost control and alerts
+
+**Example use case:** A workload with a fixed monthly cloud budget of $50,000.
+
+### 2️⃣ Planned Budget – `var.planned_limit`
+
+"What we intend to spend"
+
+Use this for budgets with predetermined spending limits that vary over time. Perfect for projects with phased spending plans or seasonal workload patterns.
+
+- Allows you to define multiple budget periods with different amounts
+- Each period has a specific start time and amount
+- Ideal for forecasting and planning scenarios
+
+**Example use case:** A project that expects $10,000 spend in Q1, $15,000 in Q2, and $20,000 in Q3-Q4.
+
+### 3️⃣ Auto-Adjusting Budget – `var.auto_adjust_data`
+
+"What AWS expects we'll spend"
+
+Use this for budgets that automatically adjust based on your historical or forecasted spending patterns. AWS analyzes your spending trends and sets the budget accordingly.
+
+- Dynamically adjusts based on historical spend or AWS forecasts
+- Useful for stable, predictable workloads
+- Reduces manual budget maintenance
+
+**Example use case:** Production environments with steady, predictable usage that grows gradually over time.
+
 > [!IMPORTANT]
 > Please note a limitation in AWS Budgets in comparison to Cost Explorer: AWS Budgets does not currently fully align with Cost Explorer, lacking support for charge types related to Savings Plans or reservation-applied usage. Consequently, the expenditure displayed in AWS Budgets may differ from what you observe in AWS Cost Explorer or your AWS bill.
 
