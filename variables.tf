@@ -11,15 +11,15 @@ variable "auto_adjust_data" {
   description = "The parameters that determine the budget amount for an auto-adjusting budget."
 
   validation {
-    condition     = var.auto_adjust_data == null || contains(["HISTORICAL", "FORECAST"], var.auto_adjust_data.auto_adjust_type)
+    condition     = var.auto_adjust_data == null || try(contains(["HISTORICAL", "FORECAST"], var.auto_adjust_data.auto_adjust_type), false)
     error_message = "auto_adjust_type must be either \"HISTORICAL\" or \"FORECAST\"."
   }
 
   validation {
-    condition = var.auto_adjust_data == null || var.auto_adjust_data.historical_options == null || (
+    condition = var.auto_adjust_data == null || try(var.auto_adjust_data.historical_options == null, false) || try((
       var.auto_adjust_data.historical_options.budget_adjustment_period >= 1 &&
       var.auto_adjust_data.historical_options.budget_adjustment_period <= 60
-    )
+    ), false)
     error_message = "if provided, budget_adjustment_period must be between 1 and 60."
   }
 }
